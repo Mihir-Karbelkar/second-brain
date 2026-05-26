@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './src/screens/HomeScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
+import PDFReaderScreen from './src/screens/PDFReaderScreen';
 import { WordProvider } from './src/context/WordContext';
 
 const Tab = createBottomTabNavigator();
@@ -16,6 +17,7 @@ export default function App() {
           <Tab.Screen name="Home" component={HomeScreen} />
           <Tab.Screen name="Search" component={SearchScreen} />
           <Tab.Screen name="Settings" component={SettingsScreen} />
+          <Tab.Screen name="Read" component={PDFReaderScreen} />
         </Tab.Navigator>
       </NavigationContainer>
     </WordProvider>

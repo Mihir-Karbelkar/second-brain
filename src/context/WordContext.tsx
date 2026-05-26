@@ -3,10 +3,20 @@ import { v4 as uuidv4 } from 'uuid';
 import { initDb, getWords, insertWord, upsertWords } from '../db/sqlite';
 import { Word, WordSource } from '../types/word';
 
+type SaveWordPayload = {
+  word: string;
+  definition: string;
+  source: WordSource;
+  notes?: string;
+  sourceTitle?: string;
+  sourcePage?: number;
+  contextSentence?: string;
+};
+
 type Ctx = {
   words: Word[];
   reload: () => void;
-  saveWord: (payload: { word: string; definition: string; source: WordSource; notes?: string }) => void;
+  saveWord: (payload: SaveWordPayload) => void;
   importWords: (imported: Omit<Word, 'id'>[]) => void;
 };
 
@@ -22,12 +32,15 @@ export const WordProvider = ({ children }: { children: React.ReactNode }) => {
     reload();
   }, []);
 
-  const saveWord: Ctx['saveWord'] = ({ word, definition, source, notes }) => {
+  const saveWord: Ctx['saveWord'] = ({ word, definition, source, notes, sourceTitle, sourcePage, contextSentence }) => {
     insertWord({
       id: uuidv4(),
       word,
       definition,
       source,
+      sourceTitle,
+      sourcePage,
+      contextSentence,
       notes,
       dateAdded: new Date().toISOString(),
     });
