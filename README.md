@@ -49,3 +49,13 @@ Import merges into SQLite using `INSERT OR IGNORE` by unique `word`.
 
 ## Dictionary source note
 Replace `src/data/dictionary.json` with a fuller royalty-free dataset (WordNet/GCIDE-derived JSON) kept under 20MB.
+
+## Android APK releases
+GitHub Actions builds the Android APK from the Expo project and attaches it to a GitHub Release when you push a version tag.
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+You can also run the **Android APK Release** workflow manually from the Actions tab to produce a downloadable APK artifact without publishing a GitHub Release.
